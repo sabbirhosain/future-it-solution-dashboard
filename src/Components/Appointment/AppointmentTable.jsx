@@ -1,9 +1,13 @@
 import React, { useEffect } from 'react'
 import { useAppointmentContextProvider } from '../../Context/AppointmentContext';
 import DataTable from 'react-data-table-component';
+import { Link } from 'react-router-dom';
+import { BsEyeFill } from 'react-icons/bs';
+import { BiEditAlt, BiTrash } from 'react-icons/bi';
+import userImage from '../../assets/user.png'
 
 const AppointmentTable = () => {
-  const { getAppointment, handleError, isLoading, appointment, searchFilter, setSearchFilter, fromDate, setFromDate, toDate, setToDate, status, setStatus } = useAppointmentContextProvider();
+  const { getAppointment, handleError, isLoading, appointment, searchFilter, fromDate, toDate, status } = useAppointmentContextProvider();
   useEffect(() => { getAppointment(1) }, [searchFilter, fromDate, toDate, status]);
 
   // data table page change
@@ -18,41 +22,70 @@ const AppointmentTable = () => {
       width: "60px"
     },
     {
-      name: "Tools Name",
-      selector: row => row.tools_name,
+      name: "Date And Time",
+      selector: row => row.date_and_time_formated
+      ,
       width: "180px"
     },
-    // {
-    //     name: "Image",
-    //     selector: row => <a href={row.attachment?.secure_url} target="_new">
-    //         <img src={row.attachment?.secure_url || userImage} width='30' /> </a>,
-    //     width: "100px",
-    // },
     {
-      name: "Available",
-      selector: row => row.available ? <button style={{ backgroundColor: "Green", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Available</button> : <button style={{ backgroundColor: "red", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Not Available</button>,
-      width: "200px"
+      name: "Image",
+      selector: row => <a href={row.user.attachment?.secure_url} target="_new">
+        <img src={row.user.attachment?.secure_url || userImage} width='30' /> </a>,
+      width: "100px",
     },
     {
-      name: "Rating",
-      selector: row => row.rating,
+      name: "Client Name",
+      selector: row => row.user.full_name,
       width: "150px"
     },
     {
-      name: "Total Sold",
-      selector: row => row.total_sold,
+      name: "Country",
+      selector: row => row.user.country,
+      width: "150px"
+    },
+    {
+      name: "Meeting Date And Time",
+      selector: row => row.meeting_date_and_time ?? 'N/A',
+      width: "200px"
+    },
+    {
+      name: "Meeting Date",
+      selector: row => row.meeting_date_formated ?? 'N/A',
+      width: "150px"
+    },
+    {
+      name: "Meeting Time",
+      selector: row => row.meeting_time ?? 'N/A',
+      width: "150px"
+    },
+    {
+      name: "Time Zone GMT",
+      selector: row => row.time_zone_gmt_and_utc ?? 'N/A',
+      width: "150px"
+    },
+    {
+      name: "Meeting Type",
+      selector: row => row.meeting_type ?? 'N/A',
       width: "150px"
     },
     {
       name: "Status",
       selector: row => {
-        if (row.status === 'hide') {
+        if (row.status === 'scheduled') {
           return (
-            <button style={{ backgroundColor: "red", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Hide</button>
+            <button style={{ backgroundColor: "orange", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Scheduled</button>
           );
-        } else if (row.status === 'show') {
+        } else if (row.status === 'completed') {
           return (
-            <button style={{ backgroundColor: "green", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Show</button>
+            <button style={{ backgroundColor: "green", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Completed</button>
+          );
+        } else if (row.status === 'cancelled') {
+          return (
+            <button style={{ backgroundColor: "red", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Cancelled</button>
+          );
+        } else if (row.status === 'rescheduled') {
+          return (
+            <button style={{ backgroundColor: "gray", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Rescheduled</button>
           );
         } else {
           return null;
@@ -61,9 +94,9 @@ const AppointmentTable = () => {
       width: "150px"
     },
     {
-      name: "Coupon Code",
-      selector: row => row.coupon_code,
-      width: "200px"
+      name: "Meeting Link",
+      selector: row => row.meeting_link ?? 'N/A',
+      width: "150px"
     },
     {
       name: "Action",

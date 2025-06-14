@@ -1,7 +1,9 @@
 import Layout from '../Layout/Layout'
 import AppointmentTable from '../Components/Appointment/AppointmentTable'
+import { useAppointmentContextProvider } from '../Context/AppointmentContext'
 
 const Appointment = () => {
+    const { setSearchFilter, setFromDate, setToDate, setStatus } = useAppointmentContextProvider()
     return (
         <Layout>
             <section className=''>
@@ -13,30 +15,31 @@ const Appointment = () => {
 
                     <div className="col-md-3">
                         <div className='w-100 mb-3 mb-md-0'>
-                            <input onChange={(event) => setUserJoinFrom(event.target.value)} className="form-control rounded-0" type="date" />
+                            <input onChange={(event) => setFromDate(event.target.value)} className="form-control rounded-0" type="date" />
                         </div>
                     </div>
 
                     <div className="col-md-3">
                         <div className='w-100 mb-3 mb-md-0'>
-                            <input onChange={(event) => setUserJoinTo(event.target.value)} className="form-control rounded-0" type="date" />
+                            <input onChange={(event) => setToDate(event.target.value)} className="form-control rounded-0" type="date" />
                         </div>
                     </div>
 
                     <div className="col-md-3">
                         <div className='w-100 mb-3 mb-md-0'>
-                            <select onChange={(event) => setUserStatus(event.target.value)} className="form-select rounded-0">
+                            <select onChange={(event) => setStatus(event.target.value)} className="form-select rounded-0">
                                 <option value="">Select Status</option>
-                                <option value="active">Active</option>
-                                <option value="pending">Pending</option>
-                                <option value="hold">Hold</option>
+                                <option value="scheduled">Scheduled</option>
+                                <option value="completed">Completed</option>
+                                <option value="cancelled">Cancelled</option>
+                                <option value="rescheduled">Rescheduled</option>
                             </select>
                         </div>
                     </div>
 
                     <div className="col-md-3">
                         <div className='w-100'>
-                            <input onChange={(event) => setUserSearchFilter(event.target.value)} className="form-control rounded-0" type="search" placeholder="Search" />
+                            <input onChange={(event) => setSearchFilter(event.target.value)} className="form-control rounded-0" type="search" placeholder="Search" />
                         </div>
                     </div>
                 </div>
