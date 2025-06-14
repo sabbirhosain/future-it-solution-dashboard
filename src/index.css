@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+  /* --Primary-Color: #25D366; */
+  --Primary-Color: #09684f;
+  --Secondary-Color: #223039;
+  --Colors-Slate-200: #D7DFE9;
+  --Colors-Slate-700: #3D4A5C;
+  --Colors-Slate-800: #2D3643;
+  --Color-Slate-50: #F0F3F9;
+  --Primary-Fonts: 'Inter', sans-serif;
+}
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden !important;
+  font-family: var(--Primary-Fonts);
+  background-color: var(--Color-Slate-50);
+}
+
+.modal-open {
+  padding: 0 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  margin: 0;
+  padding: 0;
+}
+
+button,
+input,
+select {
+  border: none;
+  border-radius: 0px;
+  outline: none;
+  background-color: transparent;
+
+  &:focus {
+    box-shadow: none !important;
+    border-color: var(--Primary-Color) !important;
+  }
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.main_content {
+  margin-left: 250px;
+  /* padding-top: 90px; */
+  overflow-x: hidden;
+}
+
+
+@media screen and (max-width:768px) {
+  .main_content {
+    margin-left: 0px;
+  }
+}

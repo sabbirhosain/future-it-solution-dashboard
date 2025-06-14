@@ -1,0 +1,48 @@
+/* ====== User Login From Style =========== */
+.password_show_btn {
+    position: absolute;
+    z-index: 999;
+    top: 3px;
+    right: 10px;
+    font-size: 20px;
+}
+
+.card_icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: var(--Primary-Color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 25px;
+}
+
+
+/* ====== Table Heading Style ======= */
+.table_name_title {
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.modal_box {
+    border-top: 3px solid red;
+}
+
+.rdt_TableHead,
+.rdt_TableHeadRow {
+    color: #223039 !important;
+    font-size: 16px !important;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: -0.30000001192092896px;
+    text-align: left;
+    background-color: #D7DFE9 !important;
+}
+
+/* ======== Dashboad ========= */
+.dashboard_account_card {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
