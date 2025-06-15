@@ -21,3 +21,9 @@ export const AppointmentSingle = import.meta.env.VITE_API_URL + "/api/v1/appoint
 export const AppointmentUpdate = import.meta.env.VITE_API_URL + "/api/v1/appointment/schedule/";
 export const AppointmentDestroy = import.meta.env.VITE_API_URL + "/api/v1/appointment/schedule/";
 
+export const ContactFromCreate = import.meta.env.VITE_API_URL + "/api/v1/users/contact-form";
+export const ContactFromShow = import.meta.env.VITE_API_URL + "/api/v1/users/contact-form";
+export const ContactFromSingle = import.meta.env.VITE_API_URL + "/api/v1/users/contact-form/";
+export const ContactFromUpdate = import.meta.env.VITE_API_URL + "/api/v1/users/contact-form/";
+export const ContactFromDestroy = import.meta.env.VITE_API_URL + "/api/v1/users/contact-form/";
+

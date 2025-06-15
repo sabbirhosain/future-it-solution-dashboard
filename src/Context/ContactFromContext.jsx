@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createContext, useContext, useState } from 'react';
+import { ContactFromShow } from './Api_Base_Url';
 const ContactFromContextProvider = createContext();
 
 const ContactFromContext = ({ children }) => {
@@ -15,9 +16,9 @@ const ContactFromContext = ({ children }) => {
     const getContactFrom = async (page) => {
         try {
             setIsLoading(true);
-            const response = await axios.get(`${AppointmentShow}?search=${searchFilter}&from_date=${fromDate}&to_date=${toDate}&status=${status}&page=${page}`);
+            const response = await axios.get(`${ContactFromShow}?search=${searchFilter}&from_date=${fromDate}&to_date=${toDate}&status=${status}&page=${page}`);
             if (response && response.data) {
-                setAppointment(response.data);
+                setContactFrom(response.data);
             }
 
         } catch (error) {
@@ -36,7 +37,7 @@ const ContactFromContext = ({ children }) => {
 
 
     return (
-        <ContactFromContextProvider.Provider value={{}}>
+        <ContactFromContextProvider.Provider value={{ handleError, isLoading, contactFrom, searchFilter, setSearchFilter, fromDate, setFromDate, toDate, setToDate, status, setStatus, getContactFrom }}>
             {children}
         </ContactFromContextProvider.Provider>
     )
