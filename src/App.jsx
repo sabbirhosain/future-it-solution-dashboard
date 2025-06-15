@@ -20,26 +20,31 @@ import CreatePremiumTools from "./Components/PremiumTools/CreatePremiumTools";
 import UpdatePremiumTools from "./Components/PremiumTools/UpdatePremiumTools";
 import Appointment from "./Pages/Appointment";
 import ContactForm from "./Pages/ContactForm";
+import { ProtectedRoute } from "./Context/AuthContext";
 
 const App = () => {
   return (
     <>
       <ToastContainer position="top-right" autoClose={1000} />
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/users/table" element={<Users />} />
-        <Route path="/users/create" element={<CreateUser />} />
-        <Route path="/users/update/:id" element={<UpdateUser />} />
-        <Route path="/users/view/:id" element={<SingleUser />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/settings" element={<Settings />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/premium-tools/table" element={<PremiumTools />} />
-        <Route path="/premium-tools/create" element={<CreatePremiumTools />} />
-        <Route path="/premium-tools/update" element={<UpdatePremiumTools />} />
-        <Route path="/appointment/table" element={<Appointment />} />
-        <Route path="/contact-form/table" element={<ContactForm />} />
+
+        <Route path="/" element={<ProtectedRoute />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboad" element={<Dashboard />} />
+          <Route path="/users/table" element={<Users />} />
+          <Route path="/users/create" element={<CreateUser />} />
+          <Route path="/users/update/:id" element={<UpdateUser />} />
+          <Route path="/users/view/:id" element={<SingleUser />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/premium-tools/table" element={<PremiumTools />} />
+          <Route path="/premium-tools/create" element={<CreatePremiumTools />} />
+          <Route path="/premium-tools/update" element={<UpdatePremiumTools />} />
+          <Route path="/appointment/table" element={<Appointment />} />
+          <Route path="/contact-form/table" element={<ContactForm />} />
+        </Route>
       </Routes>
     </>
   )
