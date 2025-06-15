@@ -25,7 +25,7 @@ const UserTable = () => {
     },
     {
       name: "Join Date",
-      selector: row => row.date_and_time,
+      selector: row => row.date_and_time_formated,
       width: "180px"
     },
     {
