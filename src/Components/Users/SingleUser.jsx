@@ -9,7 +9,6 @@ const SingleUser = () => {
     const { id } = useParams();
     const [userData, setUserData] = useState({});
     const [isLoading, setIsLoading] = useState(false);
-    console.log(userData);
 
     useEffect(() => {
         const getUserData = async () => {

@@ -3,12 +3,12 @@ import DataTable from 'react-data-table-component';
 import { Link } from 'react-router-dom';
 import { BsEyeFill } from 'react-icons/bs';
 import { BiEditAlt, BiTrash } from 'react-icons/bi';
-import userImage from '../../assets/user.png'
 import { useContactFromContextProvider } from '../../Context/ContactFromContext';
 
 const ContactFormTable = () => {
     const { handleError, isLoading, contactFrom, searchFilter, setSearchFilter, fromDate, setFromDate, toDate, setToDate, status, setStatus, getContactFrom } = useContactFromContextProvider();
     useEffect(() => { getContactFrom(1) }, [searchFilter, fromDate, toDate, status]);
+    console.log(contactFrom);
 
     // data table page change
     const onPageChange = (page) => {
@@ -23,57 +23,41 @@ const ContactFormTable = () => {
         },
         {
             name: "Date And Time",
-            selector: row => row.date_and_time_formated
+            selector: row => row.date_and_time
             ,
             width: "180px"
         },
         {
-            name: "Image",
-            selector: row => <a href={row.user.attachment?.secure_url} target="_new">
-                <img src={row.user.attachment?.secure_url || userImage} width='30' /> </a>,
-            width: "100px",
-        },
-        {
             name: "Client Name",
-            selector: row => row.user.full_name,
+            selector: row => row.name ?? 'N/A',
             width: "150px"
         },
         {
-            name: "Country",
-            selector: row => row.user.country,
+            name: "Email",
+            selector: row => row.email ?? 'N/A',
             width: "150px"
         },
         {
-            name: "Meeting Date And Time",
-            selector: row => row.meeting_date_and_time ?? 'N/A',
+            name: "Phone",
+            selector: row => row.phone ?? 'N/A',
             width: "200px"
         },
         {
-            name: "Meeting Date",
-            selector: row => row.meeting_date_formated ?? 'N/A',
+            name: "Subject",
+            selector: row => row.subject ?? 'N/A',
             width: "150px"
         },
         {
-            name: "Meeting Time",
-            selector: row => row.meeting_time ?? 'N/A',
-            width: "150px"
-        },
-        {
-            name: "Time Zone GMT",
-            selector: row => row.time_zone_gmt_and_utc ?? 'N/A',
-            width: "150px"
-        },
-        {
-            name: "Meeting Type",
-            selector: row => row.meeting_type ?? 'N/A',
+            name: "Message",
+            selector: row => row.message ?? 'N/A',
             width: "150px"
         },
         {
             name: "Status",
             selector: row => {
-                if (row.status === 'scheduled') {
+                if (row.status === 'pending') {
                     return (
-                        <button style={{ backgroundColor: "orange", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Scheduled</button>
+                        <button style={{ backgroundColor: "orange", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Pending</button>
                     );
                 } else if (row.status === 'completed') {
                     return (
@@ -83,10 +67,6 @@ const ContactFormTable = () => {
                     return (
                         <button style={{ backgroundColor: "red", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Cancelled</button>
                     );
-                } else if (row.status === 'rescheduled') {
-                    return (
-                        <button style={{ backgroundColor: "gray", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Rescheduled</button>
-                    );
                 } else {
                     return null;
                 }
@@ -94,16 +74,11 @@ const ContactFormTable = () => {
             width: "150px"
         },
         {
-            name: "Meeting Link",
-            selector: row => row.meeting_link ?? 'N/A',
-            width: "150px"
-        },
-        {
             name: "Action",
             cell: row => <div className="d-flex align-items-center gap-2">
                 <Link to={`/users/view/${row._id}`} className="btn btn-outline-primary rounded-0 btn-sm"><BsEyeFill /></Link>
                 <Link to={`/users/update/${row._id}`} className="btn btn-outline-success rounded-0 btn-sm"><BiEditAlt /></Link>
-                <button type="button" onClick={() => userDelete(row._id)} className="btn btn-outline-danger rounded-0 btn-sm"><BiTrash /></button>
+                <button type="button" onClick={() => (row._id)} className="btn btn-outline-danger rounded-0 btn-sm"><BiTrash /></button>
             </div>,
             width: "150px"
         }
