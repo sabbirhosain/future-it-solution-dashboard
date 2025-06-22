@@ -3,7 +3,7 @@ import Layout from '../../Layout/Layout'
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios';
 import { singleUser } from '../../Context/Api_Base_Url';
-const DEFAULT_IMAGE = "https://img.freepik.com/free-photo/bohemian-man-with-his-arms-crossed_1368-3542.jpg";
+import DEFAULT_IMAGE from '../../assets/user.png'
 
 const SingleUser = () => {
     const { id } = useParams();
@@ -40,7 +40,7 @@ const SingleUser = () => {
                                         <div className="col-md-12 mb-3">
                                             <div className="row">
                                                 <div className="col-4"><span>Join Date : </span></div>
-                                                <div className="col-8"><span>{userData?.join_date_formated}</span></div>
+                                                <div className="col-8"><span>{userData?.date_and_time_formated}</span></div>
                                             </div>
                                         </div>
                                         <div className="col-md-12 mb-3">
@@ -52,7 +52,7 @@ const SingleUser = () => {
                                         <div className="col-md-12 mb-3">
                                             <div className="row">
                                                 <div className="col-4"><span>Gender : </span></div>
-                                                <div className="col-8"><span>{userData?.gender}</span></div>
+                                                <div className="col-8"><span>{userData?.gender ?? 'N/A'}</span></div>
                                             </div>
                                         </div>
                                         <div className="col-md-12 mb-3">

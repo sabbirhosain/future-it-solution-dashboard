@@ -3,6 +3,7 @@ import { HiMiniUsers } from "react-icons/hi2";
 import { SiGooglemeet } from "react-icons/si";
 import { FaTools } from "react-icons/fa";
 import { MdOutlineContactMail } from "react-icons/md";
+import { AiOutlineTeam } from "react-icons/ai";
 import logo from "../../assets/dashboard.png"
 import { NavLink, useLocation } from 'react-router-dom'
 import "./Style.css"
@@ -51,6 +52,12 @@ const Sidebar = () => {
             <li className="dropdown_list">
               <NavLink to={"/contact-form/table"} className="dropdown_btn">
                 <span className="dropdown_list_name"><MdOutlineContactMail className="dropdown_list_icon" />Contact Form</span>
+              </NavLink>
+            </li>
+
+            <li className="dropdown_list">
+              <NavLink to={"/users/teams/table"} className="dropdown_btn">
+                <span className="dropdown_list_name"><AiOutlineTeam className="dropdown_list_icon" />Our Teams</span>
               </NavLink>
             </li>
 

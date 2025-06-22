@@ -27,3 +27,9 @@ export const ContactFromSingle = import.meta.env.VITE_API_URL + "/api/v1/users/c
 export const ContactFromUpdate = import.meta.env.VITE_API_URL + "/api/v1/users/contact-form/";
 export const ContactFromDestroy = import.meta.env.VITE_API_URL + "/api/v1/users/contact-form/";
 
+export const OurTeamsCreate = import.meta.env.VITE_API_URL + "/api/v1/users/our-teams";
+export const OurTeamsShow = import.meta.env.VITE_API_URL + "/api/v1/users/our-teams";
+export const OurTeamsSingle = import.meta.env.VITE_API_URL + "/api/v1/users/our-teams/";
+export const OurTeamsUpdate = import.meta.env.VITE_API_URL + "/api/v1/users/our-teams/";
+export const OurTeamsDestroy = import.meta.env.VITE_API_URL + "/api/v1/users/our-teams/";
+

@@ -5,7 +5,7 @@ import axios from 'axios';
 const AppointmentContextProvider = createContext();
 const AppointmentContext = ({ children }) => {
 
-  // All Permium Tools List
+  // All appointment List
   const [handleError, setHandleError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [appointment, setAppointment] = useState({});

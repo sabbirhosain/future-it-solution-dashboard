@@ -26,12 +26,12 @@ const PermiumToolsTable = () => {
             selector: row => row.tools_name,
             width: "180px"
         },
-        // {
-        //     name: "Image",
-        //     selector: row => <a href={row.attachment?.secure_url} target="_new">
-        //         <img src={row.attachment?.secure_url || userImage} width='30' /> </a>,
-        //     width: "100px",
-        // },
+        {
+            name: "Image",
+            selector: row => <a href={row.attachment?.secure_url} target="_new">
+                <img src={row.attachment?.secure_url || userImage} width='30' /> </a>,
+            width: "100px",
+        },
         {
             name: "Available",
             selector: row => row.available ? <button style={{ backgroundColor: "Green", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Available</button> : <button style={{ backgroundColor: "red", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Not Available</button>,
@@ -39,7 +39,7 @@ const PermiumToolsTable = () => {
         },
         {
             name: "Rating",
-            selector: row => row.rating,
+            selector: row => row.total_rating,
             width: "150px"
         },
         {

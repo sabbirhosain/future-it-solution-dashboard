@@ -1,9 +1,9 @@
 import Layout from '../../Layout/Layout'
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { createUser } from '../../Context/Api_Base_Url';
+import { useState } from 'react';
+import axios from 'axios';
 
 const CreateUser = () => {
   const navigate = useNavigate();

@@ -8,7 +8,6 @@ import { useContactFromContextProvider } from '../../Context/ContactFromContext'
 const ContactFormTable = () => {
     const { handleError, isLoading, contactFrom, searchFilter, setSearchFilter, fromDate, setFromDate, toDate, setToDate, status, setStatus, getContactFrom } = useContactFromContextProvider();
     useEffect(() => { getContactFrom(1) }, [searchFilter, fromDate, toDate, status]);
-    console.log(contactFrom);
 
     // data table page change
     const onPageChange = (page) => {

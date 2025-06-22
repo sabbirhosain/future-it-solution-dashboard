@@ -5,7 +5,6 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useUserContextProvider } from '../../Context/UserContext';
-import { useAuthContextProvider } from '../../Context/AuthContext';
 import { singleUser, updateUser } from '../../Context/Api_Base_Url';
 
 const UpdateUser = () => {
@@ -21,24 +20,32 @@ const UpdateUser = () => {
   useEffect(() => {
     const getUserData = async () => {
       try {
+        setLoading(true)
         const response = await axios.get(`${singleUser}${id}`);
         setUserData(response.data.payload);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     }
     getUserData()
-  }, []);
+  }, [id]);
 
   // Handle input changes
   const handleChange = (e) => {
     setUserData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setFieldError((prev) => ({ ...prev, [e.target.name]: '' }));
   };
 
   // Handle file input change
   const handleFileChange = (e) => {
-    setUserData({ ...userData, attachment: e.target.files[0] });
+    if (e.target.files && e.target.files[0]) {
+      setUserData({ ...userData, attachment: e.target.files[0] });
+    }
   };
+
+  const imagePreviewUrl = userData.attachment instanceof File ? URL.createObjectURL(userData.attachment) : typeof userData.attachment === "object" && userData.attachment?.secure_url ? userData.attachment.secure_url : null;
 
   // Update the user
   const handleSubmit = async (e) => {
@@ -121,6 +128,9 @@ const UpdateUser = () => {
                 <div className="col-md-6 mb-3">
                   <label className='form-label'>Image</label>
                   <input type="file" onChange={handleFileChange} className='form-control rounded-0' disabled={loading} />
+                </div>
+                <div className="col-md-6 mb-3">
+                  {imagePreviewUrl ? <img src={imagePreviewUrl} alt="Profile" style={{ maxWidth: '50px', height: '50px', objectFit: 'cover' }} /> : <p className='text-muted'>No image uploaded</p>}
                 </div>
                 <div className="col-md-6 mt-3">
                   <Link to='/users/table' type="reset" className='btn btn-dark rounded-0 w-100' disabled={loading}>Cancel</Link>

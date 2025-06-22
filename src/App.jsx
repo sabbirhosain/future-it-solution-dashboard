@@ -21,6 +21,8 @@ import UpdatePremiumTools from "./Components/PremiumTools/UpdatePremiumTools";
 import Appointment from "./Pages/Appointment";
 import ContactForm from "./Pages/ContactForm";
 import { ProtectedRoute } from "./Context/AuthContext";
+import Teams from "./Pages/Teams";
+import CreateTeam from "./Components/Teams/CreateTeam";
 
 const App = () => {
   return (
@@ -37,6 +39,8 @@ const App = () => {
           <Route path="/users/create" element={<CreateUser />} />
           <Route path="/users/update/:id" element={<UpdateUser />} />
           <Route path="/users/view/:id" element={<SingleUser />} />
+          <Route path="/users/teams/table" element={<Teams />} />
+          <Route path="/users/teams/create" element={<CreateTeam />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/premium-tools/table" element={<PremiumTools />} />
