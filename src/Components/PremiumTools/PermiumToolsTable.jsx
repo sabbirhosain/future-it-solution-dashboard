@@ -7,7 +7,7 @@ import userImage from '../../assets/user.png'
 import { usePremiumToolsContextProvider } from "../../Context/PermiumToolsContext";
 
 const PermiumToolsTable = () => {
-    const { getPermiumTools, handleError, isLoading, premiumTools, searchFilter, available, status } = usePremiumToolsContextProvider();
+    const { getPermiumTools, handleError, isLoading, premiumTools, searchFilter, available, status, permiumToolsDelete } = usePremiumToolsContextProvider();
     useEffect(() => { getPermiumTools(1) }, [searchFilter, available, status]);
 
     // data table page change
@@ -86,7 +86,7 @@ const PermiumToolsTable = () => {
             cell: row => <div className="d-flex align-items-center gap-2">
                 <Link to={`/premium-tools/update/${row._id}`} className="btn btn-outline-primary rounded-0 btn-sm"><BsEyeFill /></Link>
                 <Link to={`/premium-tools/update/${row._id}`} className="btn btn-outline-success rounded-0 btn-sm"><BiEditAlt /></Link>
-                <button type="button" onClick={() => userDelete(row._id)} className="btn btn-outline-danger rounded-0 btn-sm"><BiTrash /></button>
+                <button type="button" onClick={() => permiumToolsDelete(row._id)} className="btn btn-outline-danger rounded-0 btn-sm"><BiTrash /></button>
             </div>,
             width: "150px"
         }
