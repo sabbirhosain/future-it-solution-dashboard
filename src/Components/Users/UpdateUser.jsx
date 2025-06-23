@@ -22,7 +22,9 @@ const UpdateUser = () => {
       try {
         setLoading(true)
         const response = await axios.get(`${singleUser}${id}`);
-        setUserData(response.data.payload);
+        if (response && response.data) {
+          setUserData(response.data.payload);
+        }
       } catch (error) {
         console.log(error);
       } finally {

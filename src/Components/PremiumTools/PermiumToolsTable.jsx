@@ -33,8 +33,20 @@ const PermiumToolsTable = () => {
             width: "100px",
         },
         {
-            name: "Available",
-            selector: row => row.available ? <button style={{ backgroundColor: "Green", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Available</button> : <button style={{ backgroundColor: "red", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Not Available</button>,
+            name: "Availability",
+            selector: row => {
+                if (row.availability === 'unavailable') {
+                    return (
+                        <button style={{ backgroundColor: "red", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Unavailable</button>
+                    );
+                } else if (row.availability === 'available') {
+                    return (
+                        <button style={{ backgroundColor: "green", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Available</button>
+                    );
+                } else {
+                    return null;
+                }
+            },
             width: "200px"
         },
         {
@@ -72,8 +84,8 @@ const PermiumToolsTable = () => {
         {
             name: "Action",
             cell: row => <div className="d-flex align-items-center gap-2">
-                <Link to={`/users/view/${row._id}`} className="btn btn-outline-primary rounded-0 btn-sm"><BsEyeFill /></Link>
-                <Link to={`/users/update/${row._id}`} className="btn btn-outline-success rounded-0 btn-sm"><BiEditAlt /></Link>
+                <Link to={`/premium-tools/update/${row._id}`} className="btn btn-outline-primary rounded-0 btn-sm"><BsEyeFill /></Link>
+                <Link to={`/premium-tools/update/${row._id}`} className="btn btn-outline-success rounded-0 btn-sm"><BiEditAlt /></Link>
                 <button type="button" onClick={() => userDelete(row._id)} className="btn btn-outline-danger rounded-0 btn-sm"><BiTrash /></button>
             </div>,
             width: "150px"

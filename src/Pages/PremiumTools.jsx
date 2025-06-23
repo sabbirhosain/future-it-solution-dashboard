@@ -26,7 +26,7 @@ const PremiumTools = () => {
                             <select onChange={(event) => setAvailable(event.target.value)} className="form-select rounded-0">
                                 <option value="">Select Available</option>
                                 <option value="available">Available</option>
-                                <option value="not_available">Not Available</option>
+                                <option value="unavailable">Unavailable</option>
                             </select>
                         </div>
                     </div>

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Layout from '../../Layout/Layout';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { PremiumToolsCreate } from '../../Context/Api_Base_Url';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const CreatePremiumTools = () => {
     const navigate = useNavigate();
@@ -81,6 +82,10 @@ const CreatePremiumTools = () => {
             formData.append("tools_name", toolsName);
             formData.append("short_description", shortDesc);
             formData.append("long_description", longDesc);
+            formData.append("important_note", importantNote);
+            formData.append("coupon_code", couponCode);
+            if (attachment) { formData.append("attachment", attachment) }
+
             // Append each additional feature separately
             additionalFeatures.forEach((feature, index) => {
                 if (feature.trim() !== '') { formData.append(`additional_feature[${index}]`, feature) }
@@ -92,16 +97,12 @@ const CreatePremiumTools = () => {
                 });
             });
 
-            formData.append("important_note", importantNote);
-            formData.append("coupon_code", couponCode);
-            if (attachment) { formData.append("attachment", attachment) }
-
             const response = await axios.post(PremiumToolsCreate, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
 
             if (response && response.data) {
-                window.confirm(response.data.message);
+                toast.success(response.data.message);
                 navigate("/premium-tools/table");
             }
 

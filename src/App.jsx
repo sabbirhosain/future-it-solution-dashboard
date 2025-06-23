@@ -45,7 +45,7 @@ const App = () => {
           <Route path="/settings" element={<Settings />} />
           <Route path="/premium-tools/table" element={<PremiumTools />} />
           <Route path="/premium-tools/create" element={<CreatePremiumTools />} />
-          <Route path="/premium-tools/update" element={<UpdatePremiumTools />} />
+          <Route path="/premium-tools/update/:id" element={<UpdatePremiumTools />} />
           <Route path="/appointment/table" element={<Appointment />} />
           <Route path="/contact-form/table" element={<ContactForm />} />
         </Route>
