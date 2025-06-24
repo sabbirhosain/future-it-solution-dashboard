@@ -138,10 +138,13 @@ const ViewPremiumTools = () => {
                                                 <span className="badge bg-primary mb-2">Most Popular</span>
                                             )} */}
                                             <div className="d-flex align-items-baseline">
-                                                <h3 className="mb-0">{tier.price}</h3>
+                                                <h4 className="mb-0">{tier.price} {tier.currency}</h4>
                                                 <span className="ms-2 text-muted"> ≈ ৳ {tier.currency_exchange_price}</span>
                                             </div>
-                                            <p className="card-text">Quentity : {tier.quantity} ≈ {tier.expired} {tier.expired_type}</p>
+                                            <div className="d-flex align-items-center justify-content-between">
+                                                <p className="card-text">Quentity : {tier.quantity}</p>
+                                                <p className="card-text">{tier.expired} {tier.expired_type}</p>
+                                            </div>
                                             {tier.discount > 0 && (<span className="position-absolute top-0 end-0 badge bg-danger rounded-0">{tier.discount} % OFF</span>)}
                                         </div>
                                     </div>
