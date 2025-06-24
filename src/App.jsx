@@ -23,6 +23,7 @@ import ContactForm from "./Pages/ContactForm";
 import { ProtectedRoute } from "./Context/AuthContext";
 import Teams from "./Pages/Teams";
 import CreateTeam from "./Components/Teams/CreateTeam";
+import ViewPremiumTools from "./Components/PremiumTools/ViewPremiumTools";
 
 const App = () => {
   return (
@@ -46,6 +47,7 @@ const App = () => {
           <Route path="/premium-tools/table" element={<PremiumTools />} />
           <Route path="/premium-tools/create" element={<CreatePremiumTools />} />
           <Route path="/premium-tools/update/:id" element={<UpdatePremiumTools />} />
+          <Route path="/premium-tools/view/:id" element={<ViewPremiumTools />} />
           <Route path="/appointment/table" element={<Appointment />} />
           <Route path="/contact-form/table" element={<ContactForm />} />
         </Route>

@@ -48,7 +48,7 @@ const UpdatePremiumTools = () => {
   };
 
 
-  // Get user data
+  // Get premium tools data
   useEffect(() => {
     const getPremiumTools = async () => {
       try {

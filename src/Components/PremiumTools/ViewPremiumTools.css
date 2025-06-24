@@ -1,0 +1,47 @@
+.review-tabs .btn-group {
+    flex-wrap: wrap;
+}
+
+.review-tabs .btn {
+    margin: 2px;
+}
+
+.review-card {
+    border-left: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.review-card:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.review-card.approved {
+    border-left-color: #28a745;
+}
+
+.review-card.pending {
+    border-left-color: #ffc107;
+}
+
+.review-card.rejected {
+    border-left-color: #dc3545;
+}
+
+.admin-reply {
+    background-color: #f8f9fa;
+    border-left: 3px solid #6c757d;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+@media (max-width: 576px) {
+    .review-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+    
+    .review-status {
+        margin-top: 8px;
+    }
+}
