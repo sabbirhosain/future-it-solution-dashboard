@@ -139,7 +139,7 @@ const ViewPremiumTools = () => {
                                             )} */}
                                             <div className="d-flex align-items-baseline">
                                                 <h4 className="mb-0">{tier.price} {tier.currency}</h4>
-                                                <span className="ms-2 text-muted"> ≈ ৳ {tier.currency_exchange_price}</span>
+                                                <span className="ms-2 text-muted"> ≈ {tier.currency_exchange_price}</span>
                                             </div>
                                             <div className="d-flex align-items-center justify-content-between">
                                                 <p className="card-text">Quentity : {tier.quantity}</p>

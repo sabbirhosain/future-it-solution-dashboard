@@ -286,7 +286,7 @@ const CreatePremiumTools = () => {
                                                     />
                                                 </div>
                                                 <div className="col-md-3 mb-3">
-                                                    <label className='form-label'>Exchange Price BDT</label>
+                                                    <label className='form-label'>Exchange Price</label>
                                                     <input
                                                         type="number"
                                                         min="0"
