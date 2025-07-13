@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useEffect, useState } from 'react';
 import { useAuthContextProvider } from '../Context/AuthContext';
+import { jwtDecode } from 'jwt-decode'
 import { login } from '../Context/Api_Base_Url';
 
 const Login = () => {
@@ -17,18 +18,30 @@ const Login = () => {
 
     // if user is already login than redirect dashboad page
     useEffect(() => {
-        const storedData = localStorage.getItem('root');
-        if (storedData) {
+        const checkAuth = async () => {
+            const storedData = localStorage.getItem('root');
+            if (!storedData) return;
+
             try {
                 const decryptedData = decryptData(storedData);
-                if (decryptedData && decryptedData?.accessToken) {
-                    navigate('/dashboad');
+                if (!decryptedData?.accessToken) {
+                    localStorage.removeItem('root');
+                    return;
+                }
+
+                const decodedToken = jwtDecode(decryptedData.accessToken);
+                if (decodedToken.exp && decodedToken.exp > Math.floor(Date.now() / 1000)) {
+                    navigate('/dashboard');
+                } else {
+                    localStorage.removeItem('root');
                 }
             } catch (error) {
-                console.error('Error decrypting data:', error);
+                console.error('Authentication check failed:', error);
                 localStorage.removeItem('root');
             }
-        }
+        };
+
+        checkAuth();
     }, [navigate, decryptData]);
 
     const handleSubmit = async (e) => {
@@ -46,7 +59,7 @@ const Login = () => {
             });
 
             const data = await response.json();
-            if (response.ok) {
+            if (data.success) {
                 toast.success(data.message || 'Login Success')
                 localStorage.setItem('root', encryptData(data)); // Encrypt user data
                 navigate('/dashboad');

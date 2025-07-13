@@ -22,16 +22,15 @@ const AppointmentTable = () => {
       width: "60px"
     },
     {
-      name: "Date And Time",
-      selector: row => row.date_and_time_formated
-      ,
-      width: "180px"
-    },
-    {
       name: "Image",
       selector: row => <a href={row.user.attachment?.secure_url} target="_new">
         <img src={row.user.attachment?.secure_url || userImage} width='30' /> </a>,
       width: "100px",
+    },
+    {
+      name: "Date And Time",
+      selector: row => row.date_and_time_formated,
+      width: "180px"
     },
     {
       name: "Client Name",
@@ -44,19 +43,9 @@ const AppointmentTable = () => {
       width: "150px"
     },
     {
-      name: "Meeting Date And Time",
-      selector: row => row.meeting_date_and_time ?? 'N/A',
-      width: "200px"
-    },
-    {
-      name: "Meeting Date",
-      selector: row => row.meeting_date_formated ?? 'N/A',
-      width: "150px"
-    },
-    {
       name: "Meeting Time",
-      selector: row => row.meeting_time ?? 'N/A',
-      width: "150px"
+      selector: row => row.meeting_bangladesh_time ?? 'N/A',
+      width: "250px"
     },
     {
       name: "Time Zone GMT",

@@ -100,7 +100,7 @@ const CreateUser = () => {
                   <Link to='/users/table' type="reset" className='btn btn-dark rounded-0 w-100'>Cancel</Link>
                 </div>
                 <div className="col-md-6 mt-3">
-                  <button type="submit" className='btn btn-dark rounded-0 w-100'>Create User</button>
+                  <button type="submit" className='btn btn-dark rounded-0 w-100' disabled={loading}>{loading ? 'Creating...' : 'Create User'}</button>
                 </div>
               </div>
             </form>
