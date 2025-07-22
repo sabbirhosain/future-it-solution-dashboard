@@ -9,6 +9,11 @@ export const destroyUser = import.meta.env.VITE_API_URL + "/api/v1/auth/users/de
 export const UserStatus = import.meta.env.VITE_API_URL + "/api/v1/auth/users/status/";
 export const UserVerified = import.meta.env.VITE_API_URL + "/api/v1/auth/users/verified/";
 
+export const CategoriesCreate = import.meta.env.VITE_API_URL + "/api/v1/items/categories";
+export const CategoriesShow = import.meta.env.VITE_API_URL + "/api/v1/items/categories";
+export const CategoriesSingle = import.meta.env.VITE_API_URL + "/api/v1/items/categories/";
+export const CategoriesUpdate = import.meta.env.VITE_API_URL + "/api/v1/items/categories/";
+
 export const PremiumToolsCreate = import.meta.env.VITE_API_URL + "/api/v1/premium/tools";
 export const PremiumToolsShow = import.meta.env.VITE_API_URL + "/api/v1/premium/tools";
 export const PremiumToolsSingle = import.meta.env.VITE_API_URL + "/api/v1/premium/tools/";

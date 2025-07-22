@@ -8,20 +8,23 @@ import ContactFromContext from './Context/ContactFromContext.jsx'
 import OurTamsContext from './Context/OurTamsContext.jsx'
 import App from './App.jsx'
 import './index.css'
+import CategoriesContext from './Context/CategoriesContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
     <ContactFromContext>
       <PermiumToolsContext>
-        <AppointmentContext>
-          <OurTamsContext>
-            <AuthContext>
-              <UserContext>
-                <App />
-              </UserContext>
-            </AuthContext>
-          </OurTamsContext>
-        </AppointmentContext>
+        <CategoriesContext>
+          <AppointmentContext>
+            <OurTamsContext>
+              <AuthContext>
+                <UserContext>
+                  <App />
+                </UserContext>
+              </AuthContext>
+            </OurTamsContext>
+          </AppointmentContext>
+        </CategoriesContext>
       </PermiumToolsContext>
     </ContactFromContext>
   </BrowserRouter>

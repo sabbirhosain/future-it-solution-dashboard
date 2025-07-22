@@ -1,4 +1,4 @@
-import { MdDashboardCustomize } from "react-icons/md";
+import { MdDashboardCustomize, MdOutlineCategory } from "react-icons/md";
 import { HiMiniUsers } from "react-icons/hi2";
 import { SiGooglemeet } from "react-icons/si";
 import { FaTools } from "react-icons/fa";
@@ -7,6 +7,7 @@ import { AiOutlineTeam } from "react-icons/ai";
 import logo from "../../assets/dashboard.png"
 import { NavLink, useLocation } from 'react-router-dom'
 import "./Style.css"
+import { LiaToolsSolid } from "react-icons/lia";
 
 
 const Sidebar = () => {
@@ -34,6 +35,18 @@ const Sidebar = () => {
             <li className="dropdown_list">
               <NavLink to={"/users/table"} className="dropdown_btn">
                 <span className="dropdown_list_name"><HiMiniUsers className="dropdown_list_icon" />Users</span>
+              </NavLink>
+            </li>
+
+            <li className="dropdown_list">
+              <NavLink to={"/categories/table"} className="dropdown_btn">
+                <span className="dropdown_list_name"><MdOutlineCategory className="dropdown_list_icon" />Categories</span>
+              </NavLink>
+            </li>
+
+            <li className="dropdown_list">
+              <NavLink to={"/free-tools/table"} className="dropdown_btn">
+                <span className="dropdown_list_name"><LiaToolsSolid className="dropdown_list_icon" />Free Tools</span>
               </NavLink>
             </li>
 
