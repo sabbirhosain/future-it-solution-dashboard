@@ -21,6 +21,12 @@ export const PremiumToolsSingle = import.meta.env.VITE_API_URL + "/api/v1/items/
 export const PremiumToolsUpdate = import.meta.env.VITE_API_URL + "/api/v1/items/premium/product/";
 export const PremiumToolsDestroy = import.meta.env.VITE_API_URL + "/api/v1/items/premium/product/";
 
+export const FreeToolsCreate = import.meta.env.VITE_API_URL + "/api/v1/items/free/product";
+export const FreeToolsShow = import.meta.env.VITE_API_URL + "/api/v1/items/free/product";
+export const FreeToolsSingle = import.meta.env.VITE_API_URL + "/api/v1/items/free/product/";
+export const FreeToolsUpdate = import.meta.env.VITE_API_URL + "/api/v1/items/free/product/";
+export const FreeToolsDestroy = import.meta.env.VITE_API_URL + "/api/v1/items/free/product/";
+
 export const AppointmentCreate = import.meta.env.VITE_API_URL + "/api/v1/appointment/schedule";
 export const AppointmentShow = import.meta.env.VITE_API_URL + "/api/v1/appointment/schedule";
 export const AppointmentSingle = import.meta.env.VITE_API_URL + "/api/v1/appointment/schedule/";

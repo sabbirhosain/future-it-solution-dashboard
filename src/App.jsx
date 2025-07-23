@@ -28,6 +28,9 @@ import Categories from "./Pages/Categories";
 import FreeTools from "./Pages/FreeTools";
 import CreateCategories from "./Components/Categories/CreateCategories";
 import UpdateCategories from "./Components/Categories/UpdateCategories";
+import CreateFreeTools from "./Components/FreeTools/CreateFreeTools";
+import ViewFreeTools from "./Components/FreeTools/ViewFreeTools";
+import UpdateFreeTools from "./Components/FreeTools/UpdateFreeTools";
 
 const App = () => {
   return (
@@ -55,6 +58,10 @@ const App = () => {
           <Route path="/premium-tools/create" element={<CreatePremiumTools />} />
           <Route path="/premium-tools/update/:id" element={<UpdatePremiumTools />} />
           <Route path="/premium-tools/view/:id" element={<ViewPremiumTools />} />
+          <Route path="/free-tools/create" element={<CreateFreeTools />} />
+          <Route path="/free-tools/create" element={<CreateFreeTools />} />
+          <Route path="/free-tools/update/:id" element={<UpdateFreeTools />} />
+          <Route path="/free-tools/view/:id" element={<ViewFreeTools />} />
           <Route path="/free-tools/table" element={<FreeTools />} />
           <Route path="/appointment/table" element={<Appointment />} />
           <Route path="/contact-form/table" element={<ContactForm />} />
