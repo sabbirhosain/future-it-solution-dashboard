@@ -13,8 +13,8 @@ import CategoriesContext from './Context/CategoriesContext.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
     <ContactFromContext>
-      <PermiumToolsContext>
-        <CategoriesContext>
+      <CategoriesContext>
+        <PermiumToolsContext>
           <AppointmentContext>
             <OurTamsContext>
               <AuthContext>
@@ -24,8 +24,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               </AuthContext>
             </OurTamsContext>
           </AppointmentContext>
-        </CategoriesContext>
-      </PermiumToolsContext>
+        </PermiumToolsContext>
+      </CategoriesContext>
     </ContactFromContext>
   </BrowserRouter>
 )

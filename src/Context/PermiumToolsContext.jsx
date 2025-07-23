@@ -1,11 +1,13 @@
-import axios from 'axios';
-import { createContext, useContext, useState } from 'react';
 import { PremiumToolsDestroy, PremiumToolsShow } from './Api_Base_Url';
-import Swal from 'sweetalert2';
+import { useCategoriesContextProvider } from './CategoriesContext';
+import { createContext, useContext, useState } from 'react';
 const PremiumToolsContextProvider = createContext();
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const PermiumToolsContext = ({ children }) => {
     // All Permium Tools List
+    const { optionSelectValue } = useCategoriesContextProvider()
     const [handleError, setHandleError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [premiumTools, setPremiumTools] = useState({});
@@ -16,7 +18,7 @@ const PermiumToolsContext = ({ children }) => {
     const getPermiumTools = async (page) => {
         try {
             setIsLoading(true);
-            const response = await axios.get(`${PremiumToolsShow}?search=${searchFilter}&availability=${available}&status=${status}&page=${page}`);
+            const response = await axios.get(`${PremiumToolsShow}?search=${searchFilter}&categories=${optionSelectValue?.value}&availability=${available}&status=${status}&page=${page}`);
             if (response && response.data) {
                 setPremiumTools(response.data);
             }

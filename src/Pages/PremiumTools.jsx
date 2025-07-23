@@ -4,21 +4,14 @@ import { MdFormatListBulletedAdd } from "react-icons/md";
 import Layout from '../Layout/Layout'
 import { Link } from 'react-router-dom';
 import Select from 'react-select'
+import { useCategoriesContextProvider } from '../Context/CategoriesContext';
+import { useEffect } from 'react';
 
 const PremiumTools = () => {
+    const customStyles = { control: (styles) => ({ ...styles, backgroundColor: 'white', border: "1px solid #dee2e6", borderRadius: "0px" }) };
+    const { getCategories, isLoading, optionList, optionOnChange, optionSelectValue, optionInputChange, searchFilter } = useCategoriesContextProvider()
     const { setStatus, setAvailable, setSearchFilter } = usePremiumToolsContextProvider()
-    const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' }
-    ]
-
-    const customStyles = {
-        control: (styles) => ({
-            ...styles,
-            backgroundColor: 'white', border: "1px solid #dee2e6", borderRadius: "0px"
-        }),
-    };
+    useEffect(() => { getCategories(1) }, [searchFilter]);
 
     return (
         <Layout>
@@ -31,7 +24,18 @@ const PremiumTools = () => {
                 <div className="row bg-white p-3">
                     <div className="col-md-3">
                         <div className='w-100'>
-                            <Select options={options} isClearable={true} styles={customStyles} />
+                            <Select
+                                options={optionList}
+                                value={optionSelectValue}
+                                onChange={optionOnChange}
+                                onInputChange={optionInputChange}
+                                isLoading={isLoading}
+                                placeholder={isLoading ? "Loading..." : "Select Categries"}
+                                isClearable={true}
+                                styles={customStyles}
+                                maxMenuHeight={300}
+                                required
+                            />
                         </div>
                     </div>
                     <div className="col-md-3">

@@ -5,10 +5,12 @@ import { BsEyeFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import noImage from '../../assets/no_image.jpg'
 import { usePremiumToolsContextProvider } from "../../Context/PermiumToolsContext";
+import { useCategoriesContextProvider } from "../../Context/CategoriesContext";
 
 const PermiumToolsTable = () => {
+    const { optionSelectValue } = useCategoriesContextProvider()
     const { getPermiumTools, handleError, isLoading, premiumTools, searchFilter, available, status, permiumToolsDelete } = usePremiumToolsContextProvider();
-    useEffect(() => { getPermiumTools(1) }, [searchFilter, available, status]);
+    useEffect(() => { getPermiumTools(1) }, [searchFilter, available, status, optionSelectValue]);
 
     // data table page change
     const onPageChange = (page) => {
