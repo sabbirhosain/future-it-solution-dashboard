@@ -3,7 +3,7 @@ import DataTable from "react-data-table-component"
 import { BiEditAlt, BiTrash } from "react-icons/bi";
 import { BsEyeFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import userImage from '../../assets/user.png'
+import noImage from '../../assets/no_image.jpg'
 import { usePremiumToolsContextProvider } from "../../Context/PermiumToolsContext";
 
 const PermiumToolsTable = () => {
@@ -24,7 +24,7 @@ const PermiumToolsTable = () => {
         {
             name: "Image",
             selector: row => <a href={row.attachment?.secure_url} target="_new">
-                <img src={row.attachment?.secure_url || userImage} width='30' /> </a>,
+                <img src={row.attachment?.secure_url || noImage} width='30' /> </a>,
             width: "100px"
         },
         {

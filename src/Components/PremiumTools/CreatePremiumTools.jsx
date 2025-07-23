@@ -119,7 +119,7 @@ const CreatePremiumTools = () => {
                                         placeholder={isLoading ? "Loading..." : "Select Option"}
                                         isClearable={true}
                                         styles={customStyles}
-                                        maxMenuHeight={500}
+                                        maxMenuHeight={300}
                                         required
                                     />
                                 </div>

@@ -9,19 +9,17 @@ import axios from 'axios';
 
 const UpdatePremiumTools = () => {
   const customStyles = { control: (styles) => ({ ...styles, backgroundColor: 'white', border: "1px solid #dee2e6", borderRadius: "0px" }) };
-  const { getCategories, isLoading, optionList, optionSelectValue, setOptionSelectValue, optionOnChange, optionInputChange, searchFilter } = useCategoriesContextProvider()
+  const { getCategories, isLoading, optionList, optionOnChange, optionSelectValue, setOptionSelectValue, optionInputChange, searchFilter } = useCategoriesContextProvider()
   useEffect(() => { getCategories(1) }, [searchFilter]);
 
   const { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [fieldError, setFieldError] = useState({});
-
-  // Form state
-  const [premiumTools, setPremiumTools] = useState({ item_name: '', short_description: '', long_description: '', package_name: '', quantity: '', price: '', currency: '', expired: '', expired_type: '', discount: '', notes: '', status: '', availability: '' });
-  const [attachment, setAttachment] = useState(null);
   const [additionalFeatures, setAdditionalFeatures] = useState([""]);
 
+  // Form state
+  const [premiumTools, setPremiumTools] = useState({ item_name: '', categories_id: '', short_description: '', long_description: '', package_name: '', quantity: '', price: '', currency: '', expired: '', expired_type: '', discount: '', notes: '', status: '', availability: '', attachment: null });
 
   // Handle form input changes
   const handleInputChange = (e) => {
@@ -44,8 +42,9 @@ const UpdatePremiumTools = () => {
         const response = await axios.get(`${PremiumToolsSingle}${id}`);
 
         if (response && response.data) {
-          const data = response.data.payload
           setPremiumTools(response.data.payload)
+          const data = response.data.payload
+          setOptionSelectValue({ value: data.categories_id, label: data.categories });
 
           // Set additional features
           if (data.features && data.features.length > 0) {
@@ -100,11 +99,12 @@ const UpdatePremiumTools = () => {
       formData.append("currency", premiumTools.currency);
       formData.append("expired", premiumTools.expired);
       formData.append("expired_type", premiumTools.expired_type);
-      formData.append("discount", premiumTools.discount);
+      formData.append("discount", premiumTools.discount || 0);
       formData.append("notes", premiumTools.notes);
       formData.append("status", premiumTools.status);
       formData.append("availability", premiumTools.availability);
-      if (attachment) { formData.append("attachment", attachment) }
+      if (premiumTools.attachment) { formData.append("attachment", premiumTools.attachment) }
+
       additionalFeatures
         .filter(feature => feature.trim() !== '')  // Filter out empty strings
         .forEach((feature, index) => { formData.append(`features[${index}]`, feature) });
@@ -118,13 +118,12 @@ const UpdatePremiumTools = () => {
         navigate("/premium-tools/table");
         setOptionSelectValue(null)
       } else {
-        console.log(response.data);
         window.alert(response.data.message)
         setFieldError(response.data.message)
       }
 
     } catch (error) {
-      toast.error(error.response.data || 'Internal Server Error');
+      // toast.error(error.response.data || 'Internal Server Error');
       console.error('Internal Server Error', error);
     } finally {
       setLoading(false);
@@ -157,7 +156,7 @@ const UpdatePremiumTools = () => {
                     placeholder={isLoading ? "Loading..." : "Select Option"}
                     isClearable={true}
                     styles={customStyles}
-                    maxMenuHeight={500}
+                    maxMenuHeight={300}
                     required
                   />
                 </div>
@@ -179,17 +178,17 @@ const UpdatePremiumTools = () => {
 
                 <div className="col-md-3 mb-3">
                   <label className='form-label'>Quantity</label>
-                  <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} className='form-control rounded-0' required disabled={loading} />
+                  <input type="number" name='quantity' value={premiumTools.quantity || ''} onChange={handleInputChange} className='form-control rounded-0' required disabled={loading} />
                 </div>
 
                 <div className="col-md-3 mb-3">
                   <label className='form-label'>Price</label>
-                  <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} className='form-control rounded-0' required disabled={loading} />
+                  <input type="number" name='price' value={premiumTools.price || ''} onChange={handleInputChange} className='form-control rounded-0' required disabled={loading} />
                 </div>
 
                 <div className="col-md-3 mb-3">
                   <label className='form-label'>Currency</label>
-                  <select onChange={(event) => setCurrency(event.target.value)} className="form-select rounded-0">
+                  <select name='currency' value={premiumTools.currency || ''} onChange={handleInputChange} className="form-select rounded-0">
                     <option value="">Select Currency</option>
                     <option value="BDT">BDT</option>
                     <option value="USD">USD</option>
@@ -198,12 +197,12 @@ const UpdatePremiumTools = () => {
 
                 <div className="col-md-3 mb-3">
                   <label className='form-label'>Expired</label>
-                  <input type="number" value={expired} onChange={(e) => setExpired(e.target.value)} className='form-control rounded-0' required disabled={loading} />
+                  <input type="number" name='expired' value={premiumTools.expired || ''} onChange={handleInputChange} className='form-control rounded-0' required disabled={loading} />
                 </div>
 
                 <div className="col-md-3 mb-3">
                   <label className='form-label'>Expired Type</label>
-                  <select onChange={(event) => setExpiredType(event.target.value)} className="form-select rounded-0">
+                  <select name='expired_type' value={premiumTools.expired_type || ''} onChange={handleInputChange} className="form-select rounded-0">
                     <option value="">Select Expired</option>
                     <option value="Day">Day</option>
                     <option value="Month">Month</option>
@@ -213,7 +212,7 @@ const UpdatePremiumTools = () => {
 
                 <div className="col-md-3 mb-3">
                   <label className='form-label'>Discount</label>
-                  <input type="number" value={discount} onChange={(e) => setDiscount(e.target.value)} className='form-control rounded-0' disabled={loading} />
+                  <input type="number" name='discount' value={premiumTools.discount || ''} onChange={handleInputChange} className='form-control rounded-0' disabled={loading} />
                 </div>
 
                 {/* Additional Features */}
@@ -241,12 +240,12 @@ const UpdatePremiumTools = () => {
 
                 <div className="col-md-12 mb-3">
                   <label className='form-label'>Important Note</label>
-                  <textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows='3' className='form-control rounded-0' required disabled={loading} />
+                  <textarea name='notes' value={premiumTools.notes || ''} onChange={handleInputChange} rows='3' className='form-control rounded-0' required disabled={loading} />
                 </div>
 
                 <div className="col-md-6 mb-3">
                   <label className='form-label'>Attachment</label>
-                  <input type="file" className='form-control rounded-0' onChange={(e) => setAttachment(e.target.files[0])} disabled={loading} />
+                  <input type="file" className='form-control rounded-0' onChange={handleFileChange} disabled={loading} />
                 </div>
 
                 <div className="row">
@@ -254,7 +253,7 @@ const UpdatePremiumTools = () => {
                     <Link to='/premium-tools/table' className='btn btn-dark rounded-0 w-100' disabled={loading}>Cancel</Link>
                   </div>
                   <div className="col-md-6 mt-3">
-                    <button type="submit" className='btn btn-dark rounded-0 w-100' disabled={loading}>{loading ? 'Creating...' : 'Create Premium'}</button>
+                    <button type="submit" className='btn btn-dark rounded-0 w-100' disabled={loading}>{loading ? 'Please Wait...' : 'Update Premium'}</button>
                   </div>
                 </div>
               </div>

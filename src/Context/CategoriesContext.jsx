@@ -22,8 +22,7 @@ const CategoriesContext = ({ children }) => {
                 setCatrgories(response.data);
                 // get option filter data
                 const data = response.data.payload;
-                const selectOption = data.map(item => ({ value: item._id, label: item.categories }));
-                setOptionList(selectOption);
+                setOptionList(data.map(item => ({ value: item._id, label: item.categories })));
             }
         } catch (error) {
             console.log(error.message);
