@@ -22,64 +22,56 @@ const PermiumToolsTable = () => {
             width: "60px"
         },
         {
-            name: "Tools Name",
-            selector: row => row.tools_name,
-            width: "180px"
-        },
-        {
             name: "Image",
             selector: row => <a href={row.attachment?.secure_url} target="_new">
                 <img src={row.attachment?.secure_url || userImage} width='30' /> </a>,
-            width: "100px",
+            width: "100px"
+        },
+        {
+            name: "Items Name",
+            selector: row => row.item_name
+        },
+        {
+            name: "Categories",
+            selector: row => row.categories
+        },
+        {
+            name: "Package Name",
+            selector: row => row.package_name
+        },
+        {
+            name: "Rating",
+            selector: row => row.avg_rating
+        },
+        {
+            name: "Total Sold",
+            selector: row => row.total_sold
         },
         {
             name: "Availability",
             selector: row => {
                 if (row.availability === 'unavailable') {
-                    return (
-                        <button style={{ backgroundColor: "red", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Unavailable</button>
-                    );
+                    return (<button style={{ backgroundColor: "red", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Unavailable</button>);
                 } else if (row.availability === 'available') {
-                    return (
-                        <button style={{ backgroundColor: "green", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Available</button>
-                    );
+                    return (<button style={{ backgroundColor: "green", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Available</button>);
                 } else {
                     return null;
                 }
             },
             width: "200px"
-        },
-        {
-            name: "Rating",
-            selector: row => row.total_rating,
-            width: "150px"
-        },
-        {
-            name: "Total Sold",
-            selector: row => row.total_sold,
-            width: "150px"
         },
         {
             name: "Status",
             selector: row => {
                 if (row.status === 'hide') {
-                    return (
-                        <button style={{ backgroundColor: "red", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Hide</button>
-                    );
+                    return (<button style={{ backgroundColor: "red", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Hide</button>);
                 } else if (row.status === 'show') {
-                    return (
-                        <button style={{ backgroundColor: "green", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Show</button>
-                    );
+                    return (<button style={{ backgroundColor: "green", padding: "5px 20px", color: "white", borderRadius: "0px" }}>Show</button>);
                 } else {
                     return null;
                 }
             },
             width: "150px"
-        },
-        {
-            name: "Coupon Code",
-            selector: row => row.coupon_code,
-            width: "200px"
         },
         {
             name: "Action",

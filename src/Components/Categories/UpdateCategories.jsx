@@ -34,7 +34,8 @@ const UpdateCategories = () => {
                     setCategories(response.data.payload);
                 }
             } catch (error) {
-                console.log(error);
+                toast.error(error.response.data || 'Internal Server Error');
+                console.error('Internal Server Error', error);
             } finally {
                 setLoading(false);
             }

@@ -13,12 +13,13 @@ export const CategoriesCreate = import.meta.env.VITE_API_URL + "/api/v1/items/ca
 export const CategoriesShow = import.meta.env.VITE_API_URL + "/api/v1/items/categories";
 export const CategoriesSingle = import.meta.env.VITE_API_URL + "/api/v1/items/categories/";
 export const CategoriesUpdate = import.meta.env.VITE_API_URL + "/api/v1/items/categories/";
+export const CategoriesDestroy = import.meta.env.VITE_API_URL + "/api/v1/items/categories/";
 
-export const PremiumToolsCreate = import.meta.env.VITE_API_URL + "/api/v1/premium/tools";
-export const PremiumToolsShow = import.meta.env.VITE_API_URL + "/api/v1/premium/tools";
-export const PremiumToolsSingle = import.meta.env.VITE_API_URL + "/api/v1/premium/tools/";
-export const PremiumToolsUpdate = import.meta.env.VITE_API_URL + "/api/v1/premium/tools/";
-export const PremiumToolsDestroy = import.meta.env.VITE_API_URL + "/api/v1/premium/tools/";
+export const PremiumToolsCreate = import.meta.env.VITE_API_URL + "/api/v1/items/premium/product";
+export const PremiumToolsShow = import.meta.env.VITE_API_URL + "/api/v1/items/premium/product";
+export const PremiumToolsSingle = import.meta.env.VITE_API_URL + "/api/v1/items/premium/product/";
+export const PremiumToolsUpdate = import.meta.env.VITE_API_URL + "/api/v1/items/premium/product/";
+export const PremiumToolsDestroy = import.meta.env.VITE_API_URL + "/api/v1/items/premium/product/";
 
 export const AppointmentCreate = import.meta.env.VITE_API_URL + "/api/v1/appointment/schedule";
 export const AppointmentShow = import.meta.env.VITE_API_URL + "/api/v1/appointment/schedule";

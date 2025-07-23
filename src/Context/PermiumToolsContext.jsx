@@ -16,7 +16,7 @@ const PermiumToolsContext = ({ children }) => {
     const getPermiumTools = async (page) => {
         try {
             setIsLoading(true);
-            const response = await axios.get(`${PremiumToolsShow}?search=${searchFilter}&available=${available}&status=${status}&page=${page}`);
+            const response = await axios.get(`${PremiumToolsShow}?search=${searchFilter}&availability=${available}&status=${status}&page=${page}`);
             if (response && response.data) {
                 setPremiumTools(response.data);
             }
