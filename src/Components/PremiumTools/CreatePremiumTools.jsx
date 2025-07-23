@@ -141,12 +141,12 @@ const CreatePremiumTools = () => {
 
                                 <div className="col-md-3 mb-3">
                                     <label className='form-label'>Quantity</label>
-                                    <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} className='form-control rounded-0' required disabled={loading} />
+                                    <input type="number" min='0' value={quantity} onChange={(e) => setQuantity(e.target.value)} className='form-control rounded-0' required disabled={loading} />
                                 </div>
 
                                 <div className="col-md-3 mb-3">
                                     <label className='form-label'>Price</label>
-                                    <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} className='form-control rounded-0' required disabled={loading} />
+                                    <input type="number" min='0' value={price} onChange={(e) => setPrice(e.target.value)} className='form-control rounded-0' required disabled={loading} />
                                 </div>
 
                                 <div className="col-md-3 mb-3">
@@ -160,7 +160,7 @@ const CreatePremiumTools = () => {
 
                                 <div className="col-md-3 mb-3">
                                     <label className='form-label'>Expired</label>
-                                    <input type="number" value={expired} onChange={(e) => setExpired(e.target.value)} className='form-control rounded-0' required disabled={loading} />
+                                    <input type="number" min='0' value={expired} onChange={(e) => setExpired(e.target.value)} className='form-control rounded-0' required disabled={loading} />
                                 </div>
 
                                 <div className="col-md-3 mb-3">
@@ -175,7 +175,7 @@ const CreatePremiumTools = () => {
 
                                 <div className="col-md-3 mb-3">
                                     <label className='form-label'>Discount</label>
-                                    <input type="number" value={discount} onChange={(e) => setDiscount(e.target.value)} className='form-control rounded-0' disabled={loading} />
+                                    <input type="number" min='0' max='100' value={discount} onChange={(e) => setDiscount(e.target.value)} className='form-control rounded-0' disabled={loading} />
                                 </div>
 
                                 {/* Additional Features */}

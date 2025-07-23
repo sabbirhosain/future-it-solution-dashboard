@@ -19,7 +19,7 @@ const UpdatePremiumTools = () => {
   const [additionalFeatures, setAdditionalFeatures] = useState([""]);
 
   // Form state
-  const [premiumTools, setPremiumTools] = useState({ item_name: '', categories_id: '', short_description: '', long_description: '', package_name: '', quantity: '', price: '', currency: '', expired: '', expired_type: '', discount: '', notes: '', status: '', availability: '', attachment: null });
+  const [premiumTools, setPremiumTools] = useState({ item_name: '', categories_id: '', short_description: '', long_description: '', package_name: '', quantity: '', price: '', currency: '', expired: '', expired_type: '', discount: '', notes: '', availability: '', status: '', attachment: null });
 
   // Handle form input changes
   const handleInputChange = (e) => {
@@ -95,7 +95,7 @@ const UpdatePremiumTools = () => {
       formData.append("long_description", premiumTools.long_description);
       formData.append("package_name", premiumTools.package_name);
       formData.append("quantity", premiumTools.quantity);
-      formData.append("price", premiumTools.price);
+      formData.append("price", premiumTools.price || 0);
       formData.append("currency", premiumTools.currency);
       formData.append("expired", premiumTools.expired);
       formData.append("expired_type", premiumTools.expired_type);
@@ -136,7 +136,7 @@ const UpdatePremiumTools = () => {
         <div className="row justify-content-center">
           <div className="col-md-10">
             <form className='shadow-sm bg-white px-5 pt-3 pb-4' onSubmit={handleSubmit}>
-              <h4 className='text-center py-4'>Create Premium Tools</h4>
+              <h4 className='text-center py-4'>Update Premium Tools</h4>
               <div className="row border-top border-warning pt-4">
 
                 {/* Basic Information */}
@@ -178,12 +178,12 @@ const UpdatePremiumTools = () => {
 
                 <div className="col-md-3 mb-3">
                   <label className='form-label'>Quantity</label>
-                  <input type="number" name='quantity' value={premiumTools.quantity || ''} onChange={handleInputChange} className='form-control rounded-0' required disabled={loading} />
+                  <input type="number" name='quantity' min='0' value={premiumTools.quantity || ''} onChange={handleInputChange} className='form-control rounded-0' required disabled={loading} />
                 </div>
 
                 <div className="col-md-3 mb-3">
                   <label className='form-label'>Price</label>
-                  <input type="number" name='price' value={premiumTools.price || ''} onChange={handleInputChange} className='form-control rounded-0' required disabled={loading} />
+                  <input type="number" name='price' min='0' value={premiumTools.price || ''} onChange={handleInputChange} className='form-control rounded-0' required disabled={loading} />
                 </div>
 
                 <div className="col-md-3 mb-3">
@@ -197,7 +197,7 @@ const UpdatePremiumTools = () => {
 
                 <div className="col-md-3 mb-3">
                   <label className='form-label'>Expired</label>
-                  <input type="number" name='expired' value={premiumTools.expired || ''} onChange={handleInputChange} className='form-control rounded-0' required disabled={loading} />
+                  <input type="number" min='0' max='100' name='expired' value={premiumTools.expired || ''} onChange={handleInputChange} className='form-control rounded-0' required disabled={loading} />
                 </div>
 
                 <div className="col-md-3 mb-3">
@@ -212,7 +212,7 @@ const UpdatePremiumTools = () => {
 
                 <div className="col-md-3 mb-3">
                   <label className='form-label'>Discount</label>
-                  <input type="number" name='discount' value={premiumTools.discount || ''} onChange={handleInputChange} className='form-control rounded-0' disabled={loading} />
+                  <input type="number" min='0' name='discount' value={premiumTools.discount || ''} onChange={handleInputChange} className='form-control rounded-0' disabled={loading} />
                 </div>
 
                 {/* Additional Features */}
@@ -243,9 +243,27 @@ const UpdatePremiumTools = () => {
                   <textarea name='notes' value={premiumTools.notes || ''} onChange={handleInputChange} rows='3' className='form-control rounded-0' required disabled={loading} />
                 </div>
 
-                <div className="col-md-6 mb-3">
+                <div className="col-md-4 mb-3">
                   <label className='form-label'>Attachment</label>
                   <input type="file" className='form-control rounded-0' onChange={handleFileChange} disabled={loading} />
+                </div>
+
+                <div className="col-md-4 mb-3">
+                  <label className='form-label'>Availability</label>
+                  <select name='availability' value={premiumTools.availability || ''} onChange={handleInputChange} className="form-select rounded-0">
+                    <option value="">Select Option</option>
+                    <option value="available">Available</option>
+                    <option value="unavailable">Unavailable</option>
+                  </select>
+                </div>
+
+                <div className="col-md-4 mb-3">
+                  <label className='form-label'>Status</label>
+                  <select name='status' value={premiumTools.status || ''} onChange={handleInputChange} className="form-select rounded-0">
+                    <option value="">Select Option</option>
+                    <option value="show">Show</option>
+                    <option value="hide">Hide</option>
+                  </select>
                 </div>
 
                 <div className="row">
