@@ -1,8 +1,8 @@
-import CryptoJS from 'crypto-js';
-import axios from 'axios';
 import { createContext, useContext } from 'react';
 import { Navigate, Outlet, useNavigate } from 'react-router-dom';
 const AuthContextProvider = createContext();
+import { jwtDecode } from 'jwt-decode';
+import CryptoJS from 'crypto-js';
 
 const AuthContext = ({ children }) => {
     const navigate = useNavigate();
@@ -33,26 +33,6 @@ const AuthContext = ({ children }) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     return (
         <AuthContextProvider.Provider value={{ encryptData, decryptData }}>
             {children}
@@ -73,10 +53,25 @@ export const ProtectedRoute = ({ children }) => {
     const { decryptData } = useAuthContextProvider();
     const encryptedToken = localStorage.getItem("root");
     const decryptToken = encryptedToken ? decryptData(encryptedToken) : null;
+    if (!decryptToken?.accessToken) { return <Navigate to="/login" /> }
 
-    if (!decryptToken?.accessToken) {
+    try {
+        // Decode the token to check expiration
+        const decodedToken = jwtDecode(decryptToken.accessToken);
+        const currentTime = Date.now() / 1000; // Convert to seconds
+
+        // Check if token is expired
+        if (decodedToken.exp && decodedToken.exp < currentTime) {
+            console.log(decodedToken.exp);
+            localStorage.removeItem("root");
+            return <Navigate to="/login" />;
+        } else {
+            return children ? children : <Outlet />;
+        }
+
+    } catch (error) {
+        console.error("Error decoding token:", error);
+        localStorage.removeItem("root");
         return <Navigate to="/login" />;
-    } else {
-        return children ? children : <Outlet />;
     }
 };
