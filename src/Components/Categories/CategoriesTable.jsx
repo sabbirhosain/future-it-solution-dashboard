@@ -32,6 +32,10 @@ const CategoriesTable = () => {
             selector: row => row.categories
         },
         {
+            name: "Items Count",
+            selector: row => row.items_count
+        },
+        {
             name: "Action",
             cell: row => <div className="d-flex align-items-center gap-2">
                 <Link to={`/categories/update/${row._id}`} className="btn btn-outline-primary rounded-0 btn-sm"><BsEyeFill /></Link>
