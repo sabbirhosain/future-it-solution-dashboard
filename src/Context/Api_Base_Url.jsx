@@ -1,5 +1,6 @@
 export const login = import.meta.env.VITE_API_URL + "/api/v1/auth/admin/login";
-export const refreshToken = import.meta.env.VITE_API_URL + "/api/v1/auth/refresh";
+export const verifyToken = import.meta.env.VITE_API_URL + "/api/v1/auth/verify-token";
+export const generateAccessToken = import.meta.env.VITE_API_URL + "/api/v1/auth/generate-new-token";
 
 export const createUser = import.meta.env.VITE_API_URL + "/api/v1/auth/register";
 export const showUser = import.meta.env.VITE_API_URL + "/api/v1/auth/users/list";

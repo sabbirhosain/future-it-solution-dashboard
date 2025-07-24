@@ -3,6 +3,7 @@ import { Navigate, Outlet, useNavigate } from 'react-router-dom';
 const AuthContextProvider = createContext();
 import { jwtDecode } from 'jwt-decode';
 import CryptoJS from 'crypto-js';
+import { generateAccessToken } from './Api_Base_Url';
 
 const AuthContext = ({ children }) => {
     const navigate = useNavigate();
@@ -31,10 +32,28 @@ const AuthContext = ({ children }) => {
         }
     }
 
+    const generateNewToken = async (refreshToken) => {
+        try {
+            const response = await fetch(generateAccessToken, {
+                method: "POST", headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ refreshToken }),
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                localStorage.setItem('root', encryptData(data));
+            } else {
+                console.error('Login failed:', data.message);
+            }
+        } catch (error) {
+            console.error("Refresh token failed:", error);
+        }
+    };
+
 
 
     return (
-        <AuthContextProvider.Provider value={{ encryptData, decryptData }}>
+        <AuthContextProvider.Provider value={{ encryptData, decryptData, generateNewToken }}>
             {children}
         </AuthContextProvider.Provider>
     )
@@ -47,31 +66,44 @@ export const useAuthContextProvider = () => {
     return useContext(AuthContextProvider)
 };
 
-
 // Protected Route Component
 export const ProtectedRoute = ({ children }) => {
-    const { decryptData } = useAuthContextProvider();
+    const { decryptData, generateNewToken } = useAuthContextProvider();
     const encryptedToken = localStorage.getItem("root");
     const decryptToken = encryptedToken ? decryptData(encryptedToken) : null;
-    if (!decryptToken?.accessToken) { return <Navigate to="/login" /> }
+
+    // If no tokens exist, redirect to login
+    if (!decryptToken?.accessToken || !decryptToken?.refreshToken) {
+        return <Navigate to="/login" />;
+    }
 
     try {
-        // Decode the token to check expiration
-        const decodedToken = jwtDecode(decryptToken.accessToken);
+        const decodedAccessToken = jwtDecode(decryptToken.accessToken);
+        const decodedRefreshToken = jwtDecode(decryptToken.refreshToken);
         const currentTime = Date.now() / 1000; // Convert to seconds
 
-        // Check if token is expired
-        if (decodedToken.exp && decodedToken.exp < currentTime) {
-            console.log(decodedToken.exp);
+        // Case 1: Access token is expired but refresh token is still valid → Attempt refresh
+        if (decodedAccessToken.exp < currentTime && decodedRefreshToken.exp > currentTime) {
+            const newTokens = generateNewToken(decryptToken.refreshToken); //Generate New Token
+
+            if (newTokens?.accessToken) {
+                return children ? children : <Outlet />;
+            } else {
+                localStorage.removeItem("root");
+                return <Navigate to="/login" />;
+            }
+        }
+        // Case 2: Both tokens are expired → Force logout
+        else if (decodedAccessToken.exp < currentTime && decodedRefreshToken.exp < currentTime) {
             localStorage.removeItem("root");
             return <Navigate to="/login" />;
-        } else {
+        }
+        else {
             return children ? children : <Outlet />;
         }
-
     } catch (error) {
-        console.error("Error decoding token:", error);
+        console.error("Token verification error:", error);
         localStorage.removeItem("root");
         return <Navigate to="/login" />;
     }
-};
+}

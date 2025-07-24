@@ -10,26 +10,21 @@ const Login = () => {
     const { encryptData, decryptData } = useAuthContextProvider()
     const [showPassword, setShowPassword] = useState(false);
     const passwordShowToggle = () => { setShowPassword(!showPassword) };
-    const navigate = useNavigate();
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
     const [fieldError, setFieldError] = useState('');
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     // if user is already login than redirect dashboad page
     useEffect(() => {
         const checkAuth = async () => {
-            const storedData = localStorage.getItem('root');
-            if (!storedData) return;
+            const encryptedToken = localStorage.getItem("root");
+            const decryptToken = encryptedToken ? decryptData(encryptedToken) : null;
+            if (!decryptToken.accessToken) { return navigate('/login'); }
 
             try {
-                const decryptedData = decryptData(storedData);
-                if (!decryptedData?.accessToken) {
-                    localStorage.removeItem('root');
-                    return;
-                }
-
-                const decodedToken = jwtDecode(decryptedData.accessToken);
+                const decodedToken = jwtDecode(decryptToken.accessToken);
                 if (decodedToken.exp && decodedToken.exp > Math.floor(Date.now() / 1000)) {
                     navigate('/dashboard');
                 } else {
@@ -62,7 +57,7 @@ const Login = () => {
             if (data.success) {
                 toast.success(data.message || 'Login Success')
                 localStorage.setItem('root', encryptData(data)); // Encrypt user data
-                navigate('/dashboad');
+                navigate('/dashboard');
             } else {
                 setFieldError(data.message || 'User and Password Invalid');
                 console.error('Login failed:', data.message);

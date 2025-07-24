@@ -42,7 +42,7 @@ const App = () => {
 
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/dashboad" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/users/table" element={<Users />} />
           <Route path="/users/create" element={<CreateUser />} />
           <Route path="/users/update/:id" element={<UpdateUser />} />
