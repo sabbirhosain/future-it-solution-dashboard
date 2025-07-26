@@ -41,7 +41,7 @@ const PremiumOrderTable = () => {
     },
     {
       name: "Price",
-      selector: row => `${row.package?.price || 0} ${row.package?.currency || ''}`
+      selector: row => `${row.package?.grand_total || 0} ${row.package?.currency || ''}`
     },
     {
       name: "Customer",
