@@ -40,7 +40,7 @@ const FreeOrderTable = () => {
             selector: row => row.package?.package_name || "N/A"
         },
         {
-            name: "Price",
+            name: "Grand Total",
             selector: row => `${row.package?.grand_total || 0} ${row.package?.currency || ''}`
         },
         {
