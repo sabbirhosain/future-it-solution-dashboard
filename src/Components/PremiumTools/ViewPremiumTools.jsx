@@ -9,14 +9,11 @@ import './ViewPremiumTools.css';
 const ViewPremiumTools = () => {
     const { id } = useParams();
     const [loading, setLoading] = useState(false);
-    const [fieldError, setFieldError] = useState({});
     const [premiumTools, setPremiumTools] = useState(null);
-    console.log(premiumTools);
 
     useEffect(() => {
         const getPremiumTools = async () => {
             try {
-                setFieldError({});
                 setLoading(true);
 
                 const response = await axios.get(`${PremiumToolsSingle}${id}`);
