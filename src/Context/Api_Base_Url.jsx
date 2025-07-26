@@ -28,6 +28,18 @@ export const FreeToolsSingle = import.meta.env.VITE_API_URL + "/api/v1/items/fre
 export const FreeToolsUpdate = import.meta.env.VITE_API_URL + "/api/v1/items/free/product/";
 export const FreeToolsDestroy = import.meta.env.VITE_API_URL + "/api/v1/items/free/product/";
 
+export const PremiumProductOrderCreate = import.meta.env.VITE_API_URL + "/api/v1/items/premium/checkout";
+export const PremiumProductOrderShow = import.meta.env.VITE_API_URL + "/api/v1/items/premium/checkout";
+export const PremiumProductOrderSingle = import.meta.env.VITE_API_URL + "/api/v1/items/premium/checkout";
+export const PremiumProductOrderUpdate = import.meta.env.VITE_API_URL + "/api/v1/items/premium/checkout";
+export const PremiumProductOrderDestroy = import.meta.env.VITE_API_URL + "/api/v1/items/premium/checkout";
+
+export const FreeProductOrderCreate = import.meta.env.VITE_API_URL + "/api/v1/items/free/checkout";
+export const FreeProductOrderShow = import.meta.env.VITE_API_URL + "/api/v1/items/free/checkout";
+export const FreeProductOrderSingle = import.meta.env.VITE_API_URL + "/api/v1/items/free/checkout";
+export const FreeProductOrderUpdate = import.meta.env.VITE_API_URL + "/api/v1/items/free/checkout";
+export const FreeProductOrderDestroy = import.meta.env.VITE_API_URL + "/api/v1/items/free/checkout";
+
 export const AppointmentCreate = import.meta.env.VITE_API_URL + "/api/v1/appointment/schedule";
 export const AppointmentShow = import.meta.env.VITE_API_URL + "/api/v1/appointment/schedule";
 export const AppointmentSingle = import.meta.env.VITE_API_URL + "/api/v1/appointment/schedule/";

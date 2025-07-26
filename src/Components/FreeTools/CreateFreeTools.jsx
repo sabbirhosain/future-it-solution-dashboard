@@ -216,7 +216,7 @@ const CreateFreeTools = () => {
                                         <Link to='/free-tools/table' className='btn btn-dark rounded-0 w-100' disabled={loading}>Cancel</Link>
                                     </div>
                                     <div className="col-md-6 mt-3">
-                                        <button type="submit" className='btn btn-dark rounded-0 w-100' disabled={loading}>{loading ? 'Creating...' : 'Create Premium'}</button>
+                                        <button type="submit" className='btn btn-dark rounded-0 w-100' disabled={loading}>{loading ? 'Please Wait...' : 'Create'}</button>
                                     </div>
                                 </div>
                             </div>

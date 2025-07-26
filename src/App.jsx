@@ -31,6 +31,8 @@ import UpdateCategories from "./Components/Categories/UpdateCategories";
 import CreateFreeTools from "./Components/FreeTools/CreateFreeTools";
 import ViewFreeTools from "./Components/FreeTools/ViewFreeTools";
 import UpdateFreeTools from "./Components/FreeTools/UpdateFreeTools";
+import PermiumOrder from "./Pages/PermiumOrder";
+import FreeOrder from "./Pages/FreeOrder";
 
 const App = () => {
   return (
@@ -63,6 +65,8 @@ const App = () => {
           <Route path="/free-tools/update/:id" element={<UpdateFreeTools />} />
           <Route path="/free-tools/view/:id" element={<ViewFreeTools />} />
           <Route path="/free-tools/table" element={<FreeTools />} />
+          <Route path="/perimum-order/table" element={<PermiumOrder />} />
+          <Route path="/free-order/table" element={<FreeOrder />} />
           <Route path="/appointment/table" element={<Appointment />} />
           <Route path="/contact-form/table" element={<ContactForm />} />
         </Route>

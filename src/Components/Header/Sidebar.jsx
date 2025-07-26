@@ -2,12 +2,13 @@ import { MdDashboardCustomize, MdOutlineCategory } from "react-icons/md";
 import { HiMiniUsers } from "react-icons/hi2";
 import { SiGooglemeet } from "react-icons/si";
 import { FaTools } from "react-icons/fa";
+import { LuBaggageClaim } from "react-icons/lu";
 import { MdOutlineContactMail } from "react-icons/md";
 import { AiOutlineTeam } from "react-icons/ai";
-import logo from "../../assets/dashboard.png"
 import { NavLink, useLocation } from 'react-router-dom'
-import "./Style.css"
 import { LiaToolsSolid } from "react-icons/lia";
+import logo from "../../assets/dashboard.png"
+import "./Style.css"
 
 
 const Sidebar = () => {
@@ -53,6 +54,18 @@ const Sidebar = () => {
             <li className="dropdown_list">
               <NavLink to={"/premium-tools/table"} className="dropdown_btn">
                 <span className="dropdown_list_name"><FaTools className="dropdown_list_icon" />Premium Tools</span>
+              </NavLink>
+            </li>
+
+            <li className="dropdown_list">
+              <NavLink to={"/perimum-order/table"} className="dropdown_btn">
+                <span className="dropdown_list_name"><LuBaggageClaim className="dropdown_list_icon" />Permium Order</span>
+              </NavLink>
+            </li>
+
+            <li className="dropdown_list">
+              <NavLink to={"/free-order/table"} className="dropdown_btn">
+                <span className="dropdown_list_name"><LuBaggageClaim className="dropdown_list_icon" />Free Order</span>
               </NavLink>
             </li>
 

@@ -6,10 +6,11 @@ import PermiumToolsContext from './Context/PermiumToolsContext.jsx'
 import AppointmentContext from './Context/AppointmentContext.jsx'
 import ContactFromContext from './Context/ContactFromContext.jsx'
 import OurTamsContext from './Context/OurTamsContext.jsx'
-import App from './App.jsx'
-import './index.css'
 import CategoriesContext from './Context/CategoriesContext.jsx'
 import FreeToolsContext from './Context/FreeToolsContext.jsx'
+import ProductOrderContext from './Context/ProductOrderContext.jsx'
+import App from './App.jsx'
+import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
@@ -17,15 +18,17 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <CategoriesContext>
         <PermiumToolsContext>
           <FreeToolsContext>
-            <AppointmentContext>
-              <OurTamsContext>
-                <AuthContext>
-                  <UserContext>
-                    <App />
-                  </UserContext>
-                </AuthContext>
-              </OurTamsContext>
-            </AppointmentContext>
+            <ProductOrderContext>
+              <AppointmentContext>
+                <OurTamsContext>
+                  <AuthContext>
+                    <UserContext>
+                      <App />
+                    </UserContext>
+                  </AuthContext>
+                </OurTamsContext>
+              </AppointmentContext>
+            </ProductOrderContext>
           </FreeToolsContext>
         </PermiumToolsContext>
       </CategoriesContext>
