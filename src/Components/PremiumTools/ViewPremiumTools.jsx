@@ -37,7 +37,7 @@ const ViewPremiumTools = () => {
     if (loading) {
         return (
             <Layout>
-                <section className='container'>
+                <section className='container vh-100 d-flex align-items-center justify-content-center'>
                     <div className="loading-spinner">Loading...</div>
                 </section>
             </Layout>
@@ -47,7 +47,7 @@ const ViewPremiumTools = () => {
     if (!premiumTools) {
         return (
             <Layout>
-                <section className='container'>
+                <section className='container vh-100 d-flex align-items-center justify-content-center'>
                     <div className="not-found">Premium Tool not found</div>
                 </section>
             </Layout>
@@ -88,7 +88,7 @@ const ViewPremiumTools = () => {
                         <div className="price-info">
                             <div className="price-row">
                                 <span>Original Price:</span>
-                                <span>${premiumTools.price} {premiumTools.currency}</span>
+                                <span>{premiumTools.price} {premiumTools.currency}</span>
                             </div>
                             <div className="price-row">
                                 <span>Discount:</span>
@@ -96,11 +96,11 @@ const ViewPremiumTools = () => {
                             </div>
                             <div className="price-row">
                                 <span>Cash Out Fee:</span>
-                                <span>${premiumTools.cash_out_fee}</span>
+                                <span>{premiumTools.cash_out_fee} {premiumTools.currency}</span>
                             </div>
                             <div className="price-row grand-total">
                                 <span>Grand Total:</span>
-                                <span>${premiumTools.grand_total} {premiumTools.currency}</span>
+                                <span>{premiumTools.grand_total} {premiumTools.currency}</span>
                             </div>
                         </div>
                     </div>
@@ -118,7 +118,7 @@ const ViewPremiumTools = () => {
                             </div>
                             <div className="info-row">
                                 <span>Duration:</span>
-                                <span>{premiumTools.expired} {premiumTools.expired_type}(s)</span>
+                                <span>{premiumTools.expired} {premiumTools.expired_type}</span>
                             </div>
                             <div className="info-row">
                                 <span>Status:</span>
