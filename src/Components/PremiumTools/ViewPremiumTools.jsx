@@ -122,14 +122,14 @@ const ViewPremiumTools = () => {
                             </div>
                             <div className="info-row">
                                 <span>Status</span>
-                                <span className={`status-badge ${premiumTools.status}`}>
-                                    {premiumTools.status}
+                                <span className='status-badge'>
+                                    {freeTools.status}
                                 </span>
                             </div>
                             <div className="info-row">
                                 <span>Availability</span>
-                                <span className={`availability-badge ${premiumTools.availability}`}>
-                                    {premiumTools.availability}
+                                <span className='availability-badge'>
+                                    {freeTools.availability}
                                 </span>
                             </div>
                         </div>

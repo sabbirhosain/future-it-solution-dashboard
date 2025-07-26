@@ -122,13 +122,13 @@ const ViewFreeTools = () => {
               </div>
               <div className="info-row">
                 <span>Status</span>
-                <span className={`status-badge ${freeTools.status}`}>
+                <span className='status-badge'>
                   {freeTools.status}
                 </span>
               </div>
               <div className="info-row">
                 <span>Availability</span>
-                <span className={`availability-badge ${freeTools.availability}`}>
+                <span className='availability-badge'>
                   {freeTools.availability}
                 </span>
               </div>

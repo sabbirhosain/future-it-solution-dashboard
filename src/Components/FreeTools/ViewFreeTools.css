@@ -1,0 +1,163 @@
+.premium-tool-view {
+    padding: 30px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.premium-tool-header {
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.premium-tool-header h2 {
+    color: #333;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.category-badge {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.feature-item {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+}
+
+.feature-item:last-child {
+    border-bottom: none;
+}
+
+.feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    margin-right: 0.8rem;
+    font-size: 0.8rem;
+}
+
+.detail-card {
+    padding: 20px;
+    margin-bottom: 10px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.detail-card h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #444;
+    font-size: 1.3rem;
+}
+
+.short-desc {
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.long-desc {
+    color: #555;
+    line-height: 1.6;
+}
+
+.price-info,
+.subscription-info,
+.rating-sales-info {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.price-row,
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.price-row:last-child,
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.grand-total {
+    font-weight: bold;
+    color: #2E7D32;
+    font-size: 1.1rem;
+}
+
+.status-badge,
+.availability-badge {
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    text-transform: capitalize;
+}
+
+.status-badge {
+    background-color: #E8F5E9;
+    color: #2E7D32;
+}
+
+.availability-badge {
+    background-color: #E3F2FD;
+    color: #1565C0;
+}
+
+.rating .stars {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 0.5rem;
+}
+
+.rating .stars span {
+    color: #ddd;
+    margin-right: 0.2rem;
+}
+
+.rating .stars span.filled {
+    color: #FFC107;
+}
+
+.notes {
+    color: #666;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.loading-spinner,
+.not-found {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .premium-tool-view {
+        padding: 1rem;
+    }
+
+    .premium-tool-header h1 {
+        font-size: 1.5rem;
+    }
+}
