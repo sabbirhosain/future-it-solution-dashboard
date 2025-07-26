@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../../Layout/Layout'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { PremiumToolsSingle } from '../../Context/Api_Base_Url';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -59,7 +59,10 @@ const ViewPremiumTools = () => {
             <section className='container premium-tool-view'>
                 <div className="premium-tool-header">
                     <h2>{premiumTools.item_name}</h2>
-                    <div className="category-badge">{premiumTools.categories}</div>
+                    <div className='d-flex align-items-center justify-content-between'>
+                        <div className="category-badge">{premiumTools.categories}</div>
+                        <Link to={`/premium-tools/update/${id}`} className="btn btn-danger btn-sm rounded-0">Edit</Link>
+                    </div>
                 </div>
 
                 <div className="premium-tool-details">
@@ -87,19 +90,19 @@ const ViewPremiumTools = () => {
                         <h3>Pricing Information</h3>
                         <div className="price-info">
                             <div className="price-row">
-                                <span>Original Price:</span>
+                                <span>Original Price</span>
                                 <span>{premiumTools.price} {premiumTools.currency}</span>
                             </div>
                             <div className="price-row">
-                                <span>Discount:</span>
+                                <span>Discount</span>
                                 <span>{premiumTools.discount}%</span>
                             </div>
                             <div className="price-row">
-                                <span>Cash Out Fee:</span>
+                                <span>Cash Out Fee</span>
                                 <span>{premiumTools.cash_out_fee} {premiumTools.currency}</span>
                             </div>
                             <div className="price-row grand-total">
-                                <span>Grand Total:</span>
+                                <span>Grand Total</span>
                                 <span>{premiumTools.grand_total} {premiumTools.currency}</span>
                             </div>
                         </div>
@@ -109,25 +112,25 @@ const ViewPremiumTools = () => {
                         <h3>Subscription Details</h3>
                         <div className="subscription-info">
                             <div className="info-row">
-                                <span>Package Name:</span>
+                                <span>Package Name</span>
                                 <span>{premiumTools.package_name}</span>
                             </div>
                             <div className="info-row">
-                                <span>Quantity:</span>
+                                <span>Quantity</span>
                                 <span>{premiumTools.quantity}</span>
                             </div>
                             <div className="info-row">
-                                <span>Duration:</span>
+                                <span>Duration</span>
                                 <span>{premiumTools.expired} {premiumTools.expired_type}</span>
                             </div>
                             <div className="info-row">
-                                <span>Status:</span>
+                                <span>Status</span>
                                 <span className={`status-badge ${premiumTools.status}`}>
                                     {premiumTools.status}
                                 </span>
                             </div>
                             <div className="info-row">
-                                <span>Availability:</span>
+                                <span>Availability</span>
                                 <span className={`availability-badge ${premiumTools.availability}`}>
                                     {premiumTools.availability}
                                 </span>
@@ -139,7 +142,7 @@ const ViewPremiumTools = () => {
                         <h3>Ratings & Sales</h3>
                         <div className="rating-sales-info">
                             <div className="rating">
-                                <span>Average Rating:</span>
+                                <span>Average Rating : </span>
                                 <div className="stars">
                                     {[...Array(5)].map((_, i) => (
                                         <span key={i} className={i < premiumTools.avg_rating ? 'filled' : ''}>★</span>
@@ -148,7 +151,7 @@ const ViewPremiumTools = () => {
                                 </div>
                             </div>
                             <div className="sales">
-                                <span>Total Sold:</span>
+                                <span>Total Sold : </span>
                                 <span>{premiumTools.total_sold}</span>
                             </div>
                         </div>
