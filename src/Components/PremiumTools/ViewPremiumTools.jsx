@@ -123,13 +123,13 @@ const ViewPremiumTools = () => {
                             <div className="info-row">
                                 <span>Status</span>
                                 <span className='status-badge'>
-                                    {freeTools.status}
+                                    {premiumTools.status}
                                 </span>
                             </div>
                             <div className="info-row">
                                 <span>Availability</span>
                                 <span className='availability-badge'>
-                                    {freeTools.availability}
+                                    {premiumTools.availability}
                                 </span>
                             </div>
                         </div>
